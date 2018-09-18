@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_productos_xfecha" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57587257-7cc2-4a79-9ccd-4e0bbc125e64">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="131"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fi" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ff" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     producto.`idproducto` AS producto_idproducto,
+     producto.`idcategoria` AS producto_idcategoria,
+     producto.`nombre` AS producto_nombre,
+     producto.`descripcion` AS producto_descripcion,
+     producto.`stock` AS producto_stock,
+     producto.`precio_compra` AS producto_precio_compra,
+     producto.`precio_venta` AS producto_precio_venta,
+     producto.`fecha_vencimiento` AS producto_fecha_vencimiento
+FROM
+     `producto` producto
+where
+  producto.`fecha_vencimiento` >= $P{fi} and  producto.`fecha_vencimiento` <=$P{ff}]]>
+	</queryString>
+	<field name="producto_idproducto" class="java.lang.String"/>
+	<field name="producto_idcategoria" class="java.lang.String"/>
+	<field name="producto_nombre" class="java.lang.String"/>
+	<field name="producto_descripcion" class="java.lang.String"/>
+	<field name="producto_stock" class="java.math.BigDecimal"/>
+	<field name="producto_precio_compra" class="java.math.BigDecimal"/>
+	<field name="producto_precio_venta" class="java.math.BigDecimal"/>
+	<field name="producto_fecha_vencimiento" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="22" width="100" height="20" uuid="ee348fe9-2195-45ab-b803-4e7390a28380"/>
+				<text><![CDATA[producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="22" width="100" height="20" uuid="a94ee3a0-35ac-4dd7-a35e-85432d3b9f26"/>
+				<text><![CDATA[descricion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="22" width="100" height="20" uuid="d22a54d2-91a2-4929-b291-8bc749c2adb7"/>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="22" width="100" height="20" uuid="2c5edec4-30a4-416f-a94a-55247ae33a8d"/>
+				<text><![CDATA[Fecha vencimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="58" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="9" width="100" height="20" uuid="8ee74900-79df-4691-8932-5c8971066001"/>
+				<textFieldExpression><![CDATA[$F{producto_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="9" width="100" height="20" uuid="74157203-54ad-4fa9-af46-fa22f7e35b3a"/>
+				<textFieldExpression><![CDATA[$F{producto_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="9" width="100" height="20" uuid="1c5b4795-ce10-485a-a32b-39d84d19e13e"/>
+				<textFieldExpression><![CDATA[$F{producto_stock}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="506" y="9" width="100" height="20" uuid="1e764a0f-ccdf-4725-8520-1981be322d42"/>
+				<textFieldExpression><![CDATA[$F{producto_fecha_vencimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

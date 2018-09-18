@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_fotos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7063e074-2cd1-48fa-a596-3f271b738cea">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     fotos.`idfoto` AS fotos_idfoto,
+     fotos.`nombre` AS fotos_nombre,
+     fotos.`foto` AS fotos_foto
+FROM
+     `fotos` fotos
+where fotos.`idfoto`=$P{codigo}]]>
+	</queryString>
+	<field name="fotos_idfoto" class="java.lang.String"/>
+	<field name="fotos_nombre" class="java.lang.String"/>
+	<field name="fotos_foto" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="139" splitType="Stretch">
+			<textField>
+				<reportElement x="398" y="29" width="100" height="20" uuid="04b0a098-139b-4760-8e0b-583d48cdad6c"/>
+				<textFieldExpression><![CDATA[$F{fotos_idfoto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="80" width="100" height="20" uuid="b7ef928b-51e0-48ea-b431-722b274c9389"/>
+				<textFieldExpression><![CDATA[$F{fotos_nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="29" width="100" height="20" uuid="4fb867ec-0181-4621-9348-9251a3003c74"/>
+				<text><![CDATA[Codigo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="80" width="100" height="20" uuid="dd13c16a-3c3e-49f3-90d9-26b72d2b2faa"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="0" width="100" height="20" uuid="6a41d41e-0e6d-4577-8ef1-6543ad0c1bba"/>
+				<text><![CDATA[Foto]]></text>
+			</staticText>
+			<image>
+				<reportElement x="39" y="29" width="112" height="101" uuid="983b2f71-2a2c-457f-9f33-514d7d2db08c"/>
+				<imageExpression><![CDATA[$F{fotos_foto}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
